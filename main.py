@@ -395,7 +395,11 @@ def writeResults(sampleList, predictions):
         results.write('\n')
     results.close()
 
-
+def intChange(predictions):
+    newPred= []
+    for i in predictions:
+        newPred.append(int(i))
+    return newPred
 fileToTrain= "train_with_label.txt"
 fileToDev= "dev_with_label.txt"
 fileToTest= "test_without_label.txt"
@@ -464,6 +468,8 @@ balancedSet= numOfNones*2
 
 ##Create file with test results
 predictTest= model.predict(test_features)
+predictTest=intChange(predictTest)
+
 writeResults("test_without_label.txt", predictTest)
 
 
